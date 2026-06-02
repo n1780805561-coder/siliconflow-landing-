@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SiliconFlow API - 国内顶级AI模型海外直达</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        header {
+            padding: 20px 0;
+            text-align: center;
+            color: white;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 40px;
+        }
+        .hero {
+            text-align: center;
+            padding: 60px 0;
+            color: white;
+        }
+        .hero h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 20px;
+            opacity: 0.9;
+            margin-bottom: 40px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background: #fff;
+            color: #667eea;
+            padding: 16px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        .features {
+            background: white;
+            padding: 80px 0;
+        }
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+        .feature {
+            text-align: center;
+            padding: 30px;
+        }
+        .feature-icon {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .feature p {
+            color: #666;
+        }
+        .pricing {
+            background: #f8f9fa;
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            margin-bottom: 20px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 60px;
+        }
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .pricing-card {
+            background: white;
+            border-radius: 16px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.2s;
+            position: relative;
+        }
+        .pricing-card:hover {
+            transform: translateY(-5px);
+        }
+        .pricing-card.featured {
+            border: 2px solid #667eea;
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-5px);
+        }
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #667eea;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .pricing-card h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 48px;
+            font-weight: 700;
+            color: #667eea;
+            margin: 20px 0;
+        }
+        .price span {
+            font-size: 16px;
+            color: #666;
+            font-weight: 400;
+        }
+        .pricing-card ul {
+            list-style: none;
+            margin: 30px 0;
+            text-align: left;
+        }
+        .pricing-card li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+        .pricing-card li:before {
+            content: "✓ ";
+            color: #667eea;
+            font-weight: bold;
+        }
+        .pricing-button {
+            display: block;
+            background: #667eea;
+            color: white;
+            padding: 14px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+        .pricing-button:hover {
+            background: #5568d3;
+        }
+        .code-section {
+            background: #1a1a2e;
+            padding: 80px 0;
+            color: white;
+        }
+        .code-section .section-title {
+            color: white;
+        }
+        .code-block {
+            background: #16213e;
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 40px;
+            overflow-x: auto;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+        }
+        .code-block .comment {
+            color: #6272a4;
+        }
+        .code-block .string {
+            color: #f1fa8c;
+        }
+        .code-block .keyword {
+            color: #ff79c6;
+        }
+        .faq {
+            background: white;
+            padding: 80px 0;
+        }
+        .faq-item {
+            max-width: 800px;
+            margin: 0 auto 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 30px;
+        }
+        .faq-item h4 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        .faq-item p {
+            color: #666;
+        }
+        footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 40px 0;
+        }
+        footer a {
+            color: #667eea;
+            text-decoration: none;
+        }
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 32px; }
+            .hero p { font-size: 16px; }
+            .pricing-card.featured { transform: none; }
+            .pricing-card.featured:hover { transform: translateY(-5px); }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">SiliconFlow Proxy</div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>国内顶级 AI 模型<br>海外直达</h1>
+            <p>SiliconFlow 官方 API 海外代理，OpenAI 兼容格式，一键接入 DeepSeek / Qwen / 更多</p>
+            <a href="#pricing" class="cta-button">立即开始</a>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <h2 class="section-title">为什么选择我们</h2>
+            <p class="section-subtitle">专为海外开发者优化的 AI API 服务</p>
+            <div class="features-grid">
+                <div class="feature">
+                    <div class="feature-icon">⚡</div>
+                    <h3>闪电速度</h3>
+                    <p>国内直连，延迟 < 200ms，响应迅速无等待</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🔌</div>
+                    <h3>简单接入</h3>
+                    <p>OpenAI 兼容格式，改一行 base_url 即可迁移</p>
+                </div>
+                <div class="feature">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>稳定可靠</h3>
+                    <p>企业级可用性，99.9% SLA 保障</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2 class="section-title">简单定价</h2>
+            <p class="section-subtitle">选择适合你的方案，随时升级或降级</p>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>体验版</h3>
+                    <div class="price">$0<span>/月</span></div>
+                    <ul>
+                        <li>1,000 tokens 免费体验</li>
+                        <li>限 3 个模型</li>
+                        <li>社区支持</li>
+                    </ul>
+                    <a href="#" class="pricing-button">免费获取</a>
+                </div>
+                <div class="pricing-card featured">
+                    <span class="badge">推荐</span>
+                    <h3>开发者</h3>
+                    <div class="price">$9<span>/月</span></div>
+                    <ul>
+                        <li>1M tokens / 月</li>
+                        <li>全模型可用</li>
+                        <li>邮件支持</li>
+                        <li>用量统计</li>
+                    </ul>
+                    <a href="#" class="pricing-button">立即订阅</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>专业版</h3>
+                    <div class="price">$29<span>/月</span></div>
+                    <ul>
+                        <li>5M tokens / 月</li>
+                        <li>优先响应</li>
+                        <li>1对1 技术支持</li>
+                        <li>高级用量面板</li>
+                        <li>自定义模型</li>
+                    </ul>
+                    <a href="#" class="pricing-button">立即订阅</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="code-section">
+        <div class="container">
+            <h2 class="section-title">5 分钟接入</h2>
+            <div class="code-block">
+<span class="keyword">import</span> openai
+
+client = openai.OpenAI(
+    api_key=<span class="string">"sk-your-key"</span>,           <span class="comment"># 你的 API Key</span>
+    base_url=<span class="string">"https://siliconflow-proxy.n1780805561.workers.dev/v1"</span>  <span class="comment"># 中转地址</span>
+)
+
+response = client.chat.completions.create(
+    model=<span class="string">"deepseek-ai/DeepSeek-V3"</span>,
+    messages=[{<span class="string">"role"</span>: <span class="string">"user"</span>, <span class="string">"content"</span>: <span class="string">"Hello"</span>}]
+)
+<span class="keyword">print</span>(response.choices[0].message.content)
+            </div>
+        </div>
+    </section>
+
+    <section class="faq">
+        <div class="container">
+            <h2 class="section-title">常见问题</h2>
+            <div class="faq-item">
+                <h4>和直接用 SiliconFlow 有什么区别？</h4>
+                <p>我们提供海外支付渠道、OpenAI 格式兼容、多模型统一接口，专为海外开发者优化。</p>
+            </div>
+            <div class="faq-item">
+                <h4>如何获取 API Key？</h4>
+                <p>订阅后 API Key 将自动发送到你的注册邮箱，也可在控制面板查看。</p>
+            </div>
+            <div class="faq-item">
+                <h4>用量超限怎么办？</h4>
+                <p>达到限额后服务会自动暂停，你可购买额外用量包或升级到更高套餐。</p>
+            </div>
+            <div class="faq-item">
+                <h4>支持哪些模型？</h4>
+                <p>DeepSeek-V3、DeepSeek-R1、Qwen2.5-72B 等主流模型，持续增加中。</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>联系: support@example.com | <a href="#">服务条款</a> | <a href="#">隐私政策</a></p>
+            <p style="margin-top: 10px; opacity: 0.7;">© 2024 SiliconFlow Proxy. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
